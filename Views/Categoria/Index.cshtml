@@ -1,0 +1,39 @@
+﻿@model List<Categoria>
+
+@{
+    ViewData["Title"] = "Categorias";
+}
+
+<div class="row pt-4">
+    <div class="col-6">
+        <h2 class="text-primary">Categorias</h2>
+        <span>Tabela com todas as categorias. Você pode adicionar uma <br />nova categoria no botão ao lado!</span>
+    </div>
+    <div class="col-6 text-end">
+        <br />
+        <a asp-controller="Categoria" asp-action="AddCategoria" class="btn btn-primary">Adicionar categoria</a>
+    </div>
+</div>
+<br />
+
+<table class="table table-striped table-dark text-center">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <th scope="row">@obj.Id</th>
+                <td>@obj.Nome<td>
+                <td>Editar</td>
+                <td>Remover<td>
+            </tr>
+        }
+    </tbody>
+</table>
