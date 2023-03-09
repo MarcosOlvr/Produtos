@@ -7,5 +7,7 @@ namespace Produtos.Repositories.Contracts
         void AddCategoria(Categoria obj);
         Categoria GetCategoria(int id);
         List<Categoria> GetAll();
+        void UpdateCategoria(Categoria obj);
+        void DeleteCategoria(int id);
     }
 }

@@ -19,6 +19,14 @@ namespace Produtos.Repositories
             _db.SaveChanges();
         }
 
+        public void DeleteCategoria(int id)
+        {
+            Categoria categoria = _db.Categorias.Find(id);
+
+            _db.Categorias.Remove(categoria);
+            _db.SaveChanges();
+        }
+
         public List<Categoria> GetAll()
         {
             List<Categoria> categorias = _db.Categorias.ToList();
@@ -31,6 +39,12 @@ namespace Produtos.Repositories
             Categoria categoria = _db.Categorias.Find(id);
 
             return categoria;
+        }
+
+        public void UpdateCategoria(Categoria obj)
+        {
+            _db.Categorias.Update(obj);
+            _db.SaveChanges();
         }
     }
 }

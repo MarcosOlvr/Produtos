@@ -11,12 +11,12 @@
     </div>
     <div class="col-6 text-end">
         <br />
-        <a asp-controller="Categoria" asp-action="AddCategoria" class="btn btn-primary">Adicionar categoria</a>
+        <a asp-controller="Categoria" asp-action="Create" class="btn btn-primary">Adicionar categoria</a>
     </div>
 </div>
 <br />
 
-<table class="table table-striped table-dark text-center">
+<table class="table table-striped table-dark text-center" style="width:100%">
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -29,11 +29,13 @@
         @foreach (var obj in Model)
         {
             <tr>
-                <th scope="row">@obj.Id</th>
-                <td>@obj.Nome<td>
-                <td>Editar</td>
-                <td>Remover<td>
+                <th scope="row" width="5%">@obj.Id</th>
+                <td width="55%">@obj.Nome</td>
+                <td width="20%"><a asp-controller="Categoria" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary">Editar</a></td>
+                <td width="20%"><a asp-controller="Categoria" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger">Remover</a></td>
             </tr>
         }
     </tbody>
 </table>
+
+<a asp-controller="Produtos" asp-action="Index" class="btn btn-secondary">Voltar para produtos</a>
