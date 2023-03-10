@@ -1,0 +1,43 @@
+﻿@model NovoProdutoVM
+
+@{
+    ViewData["Title"] = "Remover produto";
+}
+
+<div class="row pt-4">
+    <div class="col-6">
+        <h2 class="text-primary">Remover produto</h2>
+        <span>Aqui você pode deletar um produto!</span>
+    </div>
+</div>
+
+<br />
+<h4>Produto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Delete">
+            <input hidden asp-for="Categorias" />
+            <input hidden asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" disabled />
+            </div>
+            <div class="form-group">
+                <label asp-for="Preco" class="control-label"></label>
+                <input asp-for="Preco" class="form-control" disabled />
+            </div>
+            <div class="form-group mt-3">
+                <select asp-for="CategoriaFK" disabled
+                        asp-items="@(new SelectList(Model.Categorias, nameof(Categoria.Id), nameof(Categoria.Nome)))" class="form-select">
+                    <option selected disabled>Selecione uma opção</option>
+                </select>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Remover" class="btn btn-danger" />
+                <a asp-action="Index" class="btn btn-secondary">Voltar para lista</a>
+            </div>
+        </form>
+    </div>
+</div>
