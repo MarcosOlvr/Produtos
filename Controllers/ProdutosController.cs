@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Produtos.Models;
 using Produtos.Models.ViewModels;
 using Produtos.Repositories.Contracts;
 
@@ -40,7 +41,14 @@ namespace Produtos.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repository.AddProduto(obj);
+                var produto = new Produto();
+
+                produto.Nome = obj.Nome;
+                produto.Preco = obj.Preco;
+                produto.Id = obj.Id;
+                produto.CategoriaFK = obj.CategoriaFK;
+
+                _repository.Add(produto);
 
                 return RedirectToAction("Index");
             }
@@ -52,7 +60,7 @@ namespace Produtos.Controllers
         public IActionResult Edit(int id)
         {
             NovoProdutoVM vm = new NovoProdutoVM();
-            var produto = _repository.GetProduto(id);
+            var produto = _repository.Get(id);
             vm.Nome = produto.Nome;
             vm.Preco = produto.Preco;
             vm.CategoriaFK = produto.CategoriaFK;
@@ -67,7 +75,14 @@ namespace Produtos.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repository.UpdateProduto(obj);
+                var produto = new Produto();
+
+                produto.Nome = obj.Nome;
+                produto.Preco = obj.Preco;
+                produto.Id = obj.Id;
+                produto.CategoriaFK = obj.CategoriaFK;
+
+                _repository.Update(produto);
 
                 return RedirectToAction("Index");
             }
@@ -79,7 +94,7 @@ namespace Produtos.Controllers
         public IActionResult Delete(int id)
         {
             NovoProdutoVM vm = new NovoProdutoVM();
-            var produto = _repository.GetProduto(id);
+            var produto = _repository.Get(id);
             vm.Nome = produto.Nome;
             vm.Preco = produto.Preco;
             vm.CategoriaFK = produto.CategoriaFK;
@@ -92,7 +107,7 @@ namespace Produtos.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int id)
         {
-            _repository.DeleteProduto(id);
+            _repository.Delete(id);
 
             return RedirectToAction("Index");
         }

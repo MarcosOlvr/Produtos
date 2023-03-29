@@ -32,7 +32,7 @@ namespace Produtos.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repository.AddCategoria(categoria);
+                _repository.Add(categoria);
 
                 return RedirectToAction("Index");
             }
@@ -46,7 +46,7 @@ namespace Produtos.Controllers
             if (id == null || id == 0)
                 return BadRequest();
 
-            var categoria = _repository.GetCategoria(id);
+            var categoria = _repository.Get(id);
 
             if (categoria == null)
                 return NotFound();
@@ -60,7 +60,7 @@ namespace Produtos.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repository.UpdateCategoria(obj);
+                _repository.Update(obj);
 
                 return RedirectToAction("Index");
             }
@@ -74,7 +74,7 @@ namespace Produtos.Controllers
             if (id == 0)
                 return BadRequest();
 
-            Categoria categoria = _repository.GetCategoria(id);
+            Categoria categoria = _repository.Get(id);
 
             if (categoria == null)
                 return NotFound();
@@ -86,7 +86,7 @@ namespace Produtos.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int id)
         {
-            _repository.DeleteCategoria(id);
+            _repository.Delete(id);
 
             return RedirectToAction("Index");
         }
